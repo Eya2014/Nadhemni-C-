@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NadhemniDataSet2" targetNamespace="http://tempuri.org/NadhemniDataSet2.xsd" xmlns:mstns="http://tempuri.org/NadhemniDataSet2.xsd" xmlns="http://tempuri.org/NadhemniDataSet2.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="NadhemniConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="NadhemniConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Nadhemni.Properties.Settings.GlobalReference.Default.NadhemniConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DesireTableAdapter" GeneratorDataComponentClassName="DesireTableAdapter" Name="Desire" UserDataComponentName="DesireTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="NadhemniConnectionString (Settings)" DbObjectName="Nadhemni.dbo.Desire" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Savings, Deadline, Frequency FROM dbo.Desire</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Savings" DataSetColumn="Savings" />
+              <Mapping SourceColumn="Deadline" DataSetColumn="Deadline" />
+              <Mapping SourceColumn="Frequency" DataSetColumn="Frequency" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NadhemniDataSet2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="NadhemniDataSet2" msprop:Generator_UserDSName="NadhemniDataSet2">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Desire" msprop:Generator_TableClassName="DesireDataTable" msprop:Generator_TableVarName="tableDesire" msprop:Generator_TablePropName="Desire" msprop:Generator_RowDeletingName="DesireRowDeleting" msprop:Generator_RowChangingName="DesireRowChanging" msprop:Generator_RowEvHandlerName="DesireRowChangeEventHandler" msprop:Generator_RowDeletedName="DesireRowDeleted" msprop:Generator_UserTableName="Desire" msprop:Generator_RowChangedName="DesireRowChanged" msprop:Generator_RowEvArgName="DesireRowChangeEvent" msprop:Generator_RowClassName="DesireRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Savings" msprop:Generator_ColumnVarNameInTable="columnSavings" msprop:Generator_ColumnPropNameInRow="Savings" msprop:Generator_ColumnPropNameInTable="SavingsColumn" msprop:Generator_UserColumnName="Savings" type="xs:decimal" />
+              <xs:element name="Deadline" msprop:Generator_ColumnVarNameInTable="columnDeadline" msprop:Generator_ColumnPropNameInRow="Deadline" msprop:Generator_ColumnPropNameInTable="DeadlineColumn" msprop:Generator_UserColumnName="Deadline" type="xs:dateTime" />
+              <xs:element name="Frequency" msprop:Generator_ColumnVarNameInTable="columnFrequency" msprop:Generator_ColumnPropNameInRow="Frequency" msprop:Generator_ColumnPropNameInTable="FrequencyColumn" msprop:Generator_UserColumnName="Frequency">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Nadhemni" Class="NadhemniDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-FFUR08V;Initial Catalog=Nadhemni;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False" SettingsObjectName="Nadhemni.Properties.Settings" SettingsPropertyName="NadhemniConnectionString2" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BeautyTb" Member="BeautyTb">
+    <Type Name="BeautyTb">
+      <Column Name="id_Beauty" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_user" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DayB" Type="System.String" DbType="VarChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="TimeB" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Association Name="Users_BeautyTb" Member="Users" ThisKey="Id_user" OtherKey="Id_user" Type="Users" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Drugs" Member="Drugs">
+    <Type Name="Drugs">
+      <Column Name="Id_Drugs" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_user" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Family" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Period" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="Family_Drugs" Member="Family" ThisKey="Id_Family" OtherKey="id_Family" Type="Family" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Pet" Member="Pet">
+    <Type Name="Pet">
+      <Column Name="Id_User" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="birthday" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="veto_name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="veto_number" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="photo" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="Users_Pet" Member="Users" ThisKey="Id_User" OtherKey="Id_user" Type="Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TimeTable" Member="TimeTable">
+    <Type Name="TimeTable">
+      <Column Name="Id_TimeTable" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_user" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Id_Family" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="day" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StartTime" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="EndTime" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="content" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="Users_TimeTable" Member="Users" ThisKey="id_user" OtherKey="Id_user" Type="Users" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="Family_TimeTable" Member="Family" ThisKey="Id_Family" OtherKey="id_Family" Type="Family" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="Users">
+      <Column Name="Id_user" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Login" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DBth" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Profession" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Situation" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ProfilePicture" Type="System.String" DbType="VarChar(70)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Association Name="Users_BeautyTb" Member="BeautyTb" ThisKey="Id_user" OtherKey="Id_user" Type="BeautyTb" />
+      <Association Name="Users_Pet" Member="Pet" ThisKey="Id_user" OtherKey="Id_User" Type="Pet" />
+      <Association Name="Users_TimeTable" Member="TimeTable" ThisKey="Id_user" OtherKey="id_user" Type="TimeTable" />
+      <Association Name="Users_DrinkWater" Member="DrinkWater" ThisKey="Id_user" OtherKey="Id_user" Type="DrinkWater" />
+      <Association Name="Users_Diseases" Member="Diseases" ThisKey="Id_user" OtherKey="Id_User" Type="Diseases" />
+      <Association Name="Users_Family" Member="Family" ThisKey="Id_user" OtherKey="Id_user" Type="Family" />
+      <Association Name="Users_Desire" Member="Desire" ThisKey="Id_user" OtherKey="Id_user" Type="Desire" />
+      <Association Name="Users_RDV" Member="RDV" ThisKey="Id_user" OtherKey="id_user" Type="RDV" />
+      <Association Name="Users_Event" Member="Event" ThisKey="Id_user" OtherKey="Id_user" Type="Event" />
+      <Association Name="Users_petreminder" Member="petreminder" ThisKey="Id_user" OtherKey="Id_User" Type="petreminder" />
+      <Association Name="Users_Bill" Member="Bill" ThisKey="Id_user" OtherKey="Id_user" Type="Bill" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DrinkWater" Member="DrinkWater">
+    <Type Name="DrinkWater">
+      <Column Name="Id_water" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_user" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PeriodDrink" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Users_DrinkWater" Member="Users" ThisKey="Id_user" OtherKey="Id_user" Type="Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Diseases" Member="Diseases">
+    <Type Name="Diseases">
+      <Column Name="Id_Di" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_User" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="time" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NameM" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Med" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Users_Diseases" Member="Users" ThisKey="Id_User" OtherKey="Id_user" Type="Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Family" Member="Family">
+    <Type Name="Family">
+      <Column Name="id_Family" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_user" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FamilyMember" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Dbrth" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Dead" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LIvesWithMe" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="study" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Family_Drugs" Member="Drugs" ThisKey="id_Family" OtherKey="Id_Family" Type="Drugs" />
+      <Association Name="Family_TimeTable" Member="TimeTable" ThisKey="id_Family" OtherKey="Id_Family" Type="TimeTable" />
+      <Association Name="Users_Family" Member="Users" ThisKey="Id_user" OtherKey="Id_user" Type="Users" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Desire" Member="Desire">
+    <Type Name="Desire">
+      <Column Name="id_Desire" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_user" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Choice" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Cost" Type="System.Decimal" DbType="Decimal(20,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Savings" Type="System.Decimal" DbType="Decimal(20,3) NOT NULL" CanBeNull="false" />
+      <Column Name="Deadline" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Frequency" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Users_Desire" Member="Users" ThisKey="Id_user" OtherKey="Id_user" Type="Users" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Planning-No]" Member="Planning_No">
+    <Type Name="Planning_No">
+      <Column Name="Id_user" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Titre" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DateEvent" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RDV" Member="RDV">
+    <Type Name="RDV">
+      <Column Name="Id_RDV" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_user" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DateRDV" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Membre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Etat" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Nom_RDV" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Users_RDV" Member="Users" ThisKey="id_user" OtherKey="Id_user" Type="Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Event" Member="Event">
+    <Type Name="Event">
+      <Column Name="Id_Event" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_user" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DateEvent" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Titre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Organiser" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Country" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Etat" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Users_Event" Member="Users" ThisKey="Id_user" OtherKey="Id_user" Type="Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.petreminder" Member="petreminder">
+    <Type Name="petreminder">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_User" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RemName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="remdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Users_petreminder" Member="Users" ThisKey="Id_User" OtherKey="Id_user" Type="Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Bill" Member="Bill">
+    <Type Name="Bill">
+      <Column Name="id_Bills" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Id_user" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DateC" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="TypeC" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Beneficiary" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="State" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Users_Bill" Member="Users" ThisKey="Id_user" OtherKey="Id_user" Type="Users" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Planning" Member="Planning">
+    <Type Name="Planning">
+      <Column Name="Id_user" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="et" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="nom" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DateEvent" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
